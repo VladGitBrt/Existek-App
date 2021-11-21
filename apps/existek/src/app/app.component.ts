@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Message } from '@existek/api-interfaces';
+import { Component, OnInit } from '@angular/core';
+import { IUser } from '../../../../libs/api-interfaces/src/lib/api-interfaces';
 
 @Component({
   selector: 'existek-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
-  hello$ = this.http.get<Message>('/api/hello');
-  constructor(private http: HttpClient) {}
+export class AppComponent implements OnInit {
+  currentUser!: IUser;
+  ngOnInit(): void {
+    console.log(1);
+  }
 }
