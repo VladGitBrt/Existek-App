@@ -12,24 +12,28 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  login = true;
-  register = false;
+  login = true; //
+  //    flags to render login or register page.
+  register = false; //
   hide = true;
-  user!: IUser;
+  user!: IUser; //current signed in user
   constructor(private auth: AuthService, public router: Router) {}
+  //variable to validate email form
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
   ]);
-  nameFormControl = new FormControl('');
-  repassFormControl = new FormControl('');
-  passFormControl = new FormControl('');
+  nameFormControl = new FormControl(''); //
+  repassFormControl = new FormControl(''); //variables to other login/register inputs
+  passFormControl = new FormControl(''); //
   matcher = new ErrorStateMatcher();
+  //method which renders register form
   registerFrame(): void {
     this.login = !this.login;
     this.register = !this.register;
     console.log(this.login, this.register);
   }
+  // logic logic realization with AuthService
   loginUser(email: string, pass: string) {
     this.auth.loginUser().subscribe((data) => {
       data.forEach((user: IUser) => {
@@ -41,6 +45,7 @@ export class LoginComponent {
       });
     });
   }
+  //register logic realization with AuthService
   registerUser(
     email: string,
     pass: string,

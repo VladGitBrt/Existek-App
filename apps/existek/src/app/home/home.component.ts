@@ -10,11 +10,12 @@ import { MusicDataService } from '../music-data.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit, AfterViewInit {
-  musicArr: IMusic[] = [];
-  fullArr: IMusic[] = [];
-  genreArr: string[] = [];
-  albumArr: string[] = [];
-  authorArr: string[] = [];
+  musicArr: IMusic[] = []; //render Array for pagination and input filter
+  fullArr: IMusic[] = []; //logical Array to work with data
+  genreArr: string[] = []; //
+  albumArr: string[] = []; //filtered arrays for filter selects
+  authorArr: string[] = []; //
+  //paginator realization from AngularMaterial
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
 
