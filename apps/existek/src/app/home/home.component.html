@@ -1,25 +1,93 @@
 <div class="main-container">
   <header>
     <div class="logo-container"></div>
+
     <mat-form-field class="example-full-width" appearance="legacy">
       <mat-label>Search</mat-label>
-      <input matInput />
-      <mat-icon matSuffix aria-hidden="false" class="search-btn"
-        >search</mat-icon
-      >
+      <input
+        matInput
+        [formControl]="searchFormControl"
+        (input)="searchResult(searchFormControl.value)"
+      />
     </mat-form-field>
     <div class="exit-container">
-      <mat-icon aria-hidden="false" class="exit-btn">close</mat-icon>
+      <mat-icon aria-hidden="false" class="exit-btn" routerLink="/login"
+        >close</mat-icon
+      >
     </div>
   </header>
   <div class="content-container">
     <div class="sidenav">
-      <div class="categories"></div>
-      <div class="price"></div>
+      <div class="categories">
+        <b>Categories</b>
+        <mat-form-field appearance="fill" class="select-field">
+          <mat-label>Genre</mat-label>
+          <select
+            matNativeControl
+            [formControl]="selectFormControl"
+            (change)="optionGenreChange(selectFormControl.value)"
+          >
+            <option value="All">All</option>
+            <option *ngFor="let item of genreArr">{{ item }}</option>
+          </select>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="select-field">
+          <mat-label>Album</mat-label>
+          <select
+            matNativeControl
+            [formControl]="selectFormControl"
+            (change)="optionAlbumChange(selectFormControl.value)"
+          >
+            <option value="All">All</option>
+            <option *ngFor="let item of albumArr">{{ item }}</option>
+          </select>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="select-field">
+          <mat-label>Author</mat-label>
+          <select
+            matNativeControl
+            [formControl]="selectFormControl"
+            (change)="optionAuthorChange(selectFormControl.value)"
+          >
+            <option value="All">All</option>
+            <option *ngFor="let item of authorArr">{{ item }}</option>
+          </select>
+        </mat-form-field>
+      </div>
+      <div class="price">
+        <p>Sort by year</p>
+        <mat-slider
+          class="slider"
+          thumbLabel
+          min="1991"
+          max="2021"
+          step="1"
+          [displayWith]="sliderConfig"
+          aria-label="units"
+          tickInterval="1"
+          [formControl]="sliderFormControl"
+          (change)="sliderChange(sliderFormControl.value)"
+        ></mat-slider>
+      </div>
     </div>
     <div class="content">
-      <div class="items"></div>
-      <div class="pagination"></div>
+      <div class="items">
+        <div class="music-item" *ngFor="let item of musicArr">
+          <mat-card class="item-card">
+            <div class="image">Album: {{ item.album }}</div>
+            <mat-card-title>{{ item.title }}</mat-card-title>
+            <mat-card-subtitle>{{ item.author }}</mat-card-subtitle>
+            <mat-card-subtitle>{{ item.year }}</mat-card-subtitle>
+          </mat-card>
+        </div>
+      </div>
+      <div class="pagination">
+        <mat-paginator
+          class="paginator"
+          [length]="12"
+          [pageSize]="6"
+        ></mat-paginator>
+      </div>
     </div>
   </div>
 </div>

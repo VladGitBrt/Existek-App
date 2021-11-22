@@ -12,6 +12,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatCardModule } from '@angular/material/card';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 const appRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/login' },
@@ -29,9 +32,12 @@ const appRoutes: Routes = [
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
+    MatPaginatorModule,
     FormsModule,
     ReactiveFormsModule,
     MatIconModule,
+    MatSliderModule,
+    MatCardModule,
     RouterModule.forRoot(appRoutes),
   ],
   providers: [],
